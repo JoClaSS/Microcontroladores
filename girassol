@@ -1,0 +1,47 @@
+#include <Servo.h>
+int pin = 10;
+int ldr = A0;
+int M = 10;
+int m = 0;
+int var,a, p1, p2;
+Servo x;
+
+void girassol(int a){
+  x.write(M);
+  x.write(m);
+ if( a < 800)
+ {
+  M = M + 5;
+  m = m + 5;
+ }
+if( a > 1000)
+  M = M;
+  m = m;
+}
+if( M > 180){
+  M = 10;
+}
+if( m > 180){
+  m = 0;
+}
+}
+
+
+
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(pin,OUTPUT);
+  pinMode(ldr,INPUT);
+  x.attach(pin); 
+}
+
+void loop() { 
+  var = analogRead(ldr); 
+  a = map(var,0,50,0,255);
+  if( a < 0)
+  {
+     a = 0;
+  }
+  girassol(a);
+ }
